@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEROX STUDIO - Premium Car Detailing & Paint Protection</title>
+
+    <!-- Bootstrap 5 CSS & FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --tiffany-main: #0ABAB5;
+            --tiffany-light: #2ef0e6;
+            --tiffany-dark: #066e6b;
+            --tiffany-glow: rgba(10, 186, 181, 0.5);
+            --bg-dark: #070c0e;
+            --bg-card: #0f171a;
+            --bg-card-hover: #152226;
+            --border-neon: rgba(10, 186, 181, 0.3);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            padding-bottom: 90px; /* Отступ снизу под плашку */
+        }
+
+        .text-tiffany { color: var(--tiffany-main) !important; }
+        .text-tiffany-light { color: var(--tiffany-light) !important; }
+
+        .text-glow-tiffany {
+            text-shadow: 0 0 10px rgba(10, 186, 181, 0.7), 0 0 25px rgba(10, 186, 181, 0.4);
+        }
+
+        .border-tiffany {
+            border-color: var(--tiffany-main) !important;
+        }
+
+        /* ==========================================
+           СТИЛИ НАВИГАЦИИ (NAVBAR)
+           ========================================== */
+        .glass-navbar {
+            background-color: rgba(7, 12, 14, 0.9) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-neon);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #ffffff !important;
+            font-size: 1.25rem;
+        }
+        .navbar-brand span {
+            color: var(--tiffany-main);
+            text-shadow: 0 0 10px var(--tiffany-glow);
+        }
+
+        .nav-link {
+            color: #cbd5e1 !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--tiffany-light) !important;
+            text-shadow: 0 0 8px var(--tiffany-glow);
+        }
+
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background-color: #0b1316;
+                border-bottom: 1px solid var(--border-neon);
+                padding: 15px 20px;
+                border-radius: 0 0 16px 16px;
+            }
+            .nav-link {
+                padding: 12px 0 !important;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .nav-link:last-child { border-bottom: none; }
+        }
+
+        .navbar-toggler {
+            border: 1px solid var(--border-neon) !important;
+            color: var(--tiffany-main) !important;
+            padding: 6px 10px;
+        }
+        .navbar-toggler:focus { box-shadow: 0 0 10px var(--tiffany-glow); }
+
+        /* ==========================================
+           СТИЛИ HERO (ГЛАВНЫЙ ЭКРАН)
+           ========================================== */
+        .hero-section {
+            background: linear-gradient(180deg, rgba(7, 12, 14, 0.6) 0%, rgba(7, 12, 14, 0.95) 100%),
+                        url('https://www.luckystarauto.ae/wp-content/uploads/2024/10/lukystarcarcare-scaled.jpg') center/cover no-repeat;
+            padding: 150px 0 90px 0;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @media(min-width: 768px) {
+            .hero-title { font-size: 3.5rem; }
+            .hero-section { padding: 170px 0 110px 0; }
+        }
+
+        .btn-tiffany {
+            background-color: var(--tiffany-main);
+            color: #000000 !important;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(10, 186, 181, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-tiffany:hover {
+            background-color: var(--tiffany-light);
+            box-shadow: 0 0 25px rgba(46, 240, 230, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-tiffany {
+            background: transparent;
+            color: var(--tiffany-light) !important;
+            border: 1px solid var(--tiffany-main);
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-tiffany:hover {
+            background: rgba(10, 186, 181, 0.15);
+            border-color: var(--tiffany-light);
+            box-shadow: 0 0 15px rgba(10, 186, 181, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================
+           СТИЛИ КАРТОЧЕК ПРЕИМУЩЕСТВ (O NAS)
+           ========================================== */
+        .feature-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-neon);
+            border-radius: 16px;
+            padding: 25px;
+            height: 100%;
+            transition: all 0.35s ease;
+        }
+
+        .feature-card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--tiffany-main);
+            box-shadow: 0 0 25px rgba(10, 186, 181, 0.4);
+            transform: translateY(-6px);
+        }
+
+        /* ==========================================
+           СТИЛИ КАРУСЕЛИ УСЛУГ (USŁUGI I CENNIK)
+           ========================================== */
+        .services-carousel-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .services-scroll-wrapper {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 10px 15px 30px 15px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--tiffany-main) var(--bg-card);
+        }
+
+        @media(min-width: 768px) {
+            .services-scroll-wrapper {
+                gap: 24px;
+                padding: 20px 5px 30px 5px;
+            }
+        }
+
+        .services-scroll-wrapper::-webkit-scrollbar {
+            height: 6px;
+        }
+        .services-scroll-wrapper::-webkit-scrollbar-track {
+            background: var(--bg-card);
+            border-radius: 10px;
+        }
+        .services-scroll-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--tiffany-main);
+            border-radius: 10px;
+        }
+
+        .service-card-item {
+            flex: 0 0 88%;
+            max-width: 340px;
+            scroll-snap-align: center;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-neon);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.35s ease;
+        }
+
+        @media(min-width: 768px) {
+            .service-card-item {
+                flex: 0 0 360px;
+                max-width: none;
+                scroll-snap-align: start;
+            }
+        }
+
+        .service-card-item:hover {
+            border-color: var(--tiffany-main);
+            box-shadow: 0 0 25px rgba(10, 186, 181, 0.35);
+            transform: translateY(-4px);
+            background-color: var(--bg-card-hover);
+        }
+
+        .service-card-img {
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-neon);
+        }
+
+        .price-badge-sm {
+            background-color: rgba(10, 186, 181, 0.1);
+            border: 1px solid var(--border-neon);
+            color: var(--tiffany-light);
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .subservice-list-card {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .subservice-list-card li {
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .subservice-list-card li:last-child {
+            border-bottom: none;
+        }
+
+        .service-checkbox-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            width: 100%;
+            gap: 8px;
+        }
+
+        .service-checkbox-label input[type="checkbox"] {
+            accent-color: var(--tiffany-main);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .carousel-arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(7, 12, 14, 0.85);
+            border: 1px solid var(--tiffany-main);
+            color: var(--tiffany-light);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(10, 186, 181, 0.3);
+        }
+
+        .carousel-arrow-btn:hover {
+            background-color: var(--tiffany-main);
+            color: #000;
+            box-shadow: 0 0 25px rgba(10, 186, 181, 0.7);
+        }
+
+        .carousel-prev { left: -10px; }
+        .carousel-next { right: -10px; }
+
+        @media (max-width: 991px) {
+            .carousel-arrow-btn { display: none; }
+        }
+
+        /* ==========================================
+           ПЛАШКА СУММЫ И БРОНИРОВАНИЯ СНИЗУ
+           ========================================== */
+        .floating-booking-bar {
+            position: fixed;
+            bottom: -100px;
+            left: 0;
+            width: 100%;
+            background: rgba(7, 12, 14, 0.95);
+            border-top: 2px solid var(--tiffany-main);
+            backdrop-filter: blur(12px);
+            z-index: 998;
+            padding: 15px 0;
+            box-shadow: 0 -10px 30px rgba(10, 186, 181, 0.25);
+            transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .floating-booking-bar.show {
+            bottom: 0;
+        }
+
+        /* ==========================================
+           СТИЛИ ГАЛЕРЕИ (GALERIA)
+           ========================================== */
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 14px;
+            position: relative;
+            border: 1px solid var(--border-neon);
+            cursor: pointer;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 14px;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
+        }
+
+        .gallery-text {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            color: var(--tiffany-light);
+            font-weight: 700;
+            font-size: 0.9rem;
+            background: rgba(7, 12, 14, 0.85);
+            padding: 8px 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border-neon);
+            opacity: 0.85;
+            transform: translateY(0);
+            transition: all 0.35s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.08);
+            filter: brightness(1.15);
+        }
+
+        .gallery-item:hover .gallery-text {
+            opacity: 1;
+            transform: translateY(-4px);
+            border-color: var(--tiffany-main);
+            box-shadow: 0 0 15px rgba(10, 186, 181, 0.3);
+        }
+
+        /* ==========================================
+           СТИЛИ КОНТАКТОВ И КАРТЫ (KONTAKT)
+           ========================================== */
+        .map-container {
+            border: 1px solid var(--border-neon);
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            height: 300px;
+            position: relative;
+        }
+
+        @media(min-width: 992px) {
+            .map-container { height: 100%; min-height: 380px; }
+        }
+
+        .map-container iframe {
+            filter: invert(90%) hue-rotate(170deg) grayscale(25%) contrast(110%);
+            width: 100%;
+            height: 100%;
+            border: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* ==========================================
+           СТИЛИ СОЦСЕТЕЙ (SOCIAL MEDIA)
+           ========================================== */
+        .social-card {
+            border: 1px solid var(--border-neon);
+            border-radius: 16px;
+            padding: 20px;
+            background: var(--bg-card);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .social-card:hover {
+            border-color: var(--tiffany-main);
+            box-shadow: 0 0 20px rgba(10, 186, 181, 0.3);
+            transform: translateY(-4px);
+        }
+
+        /* ==========================================
+           СТИЛИ МОДАЛЬНОГО ОКНА (REZERWACJA)
+           ========================================== */
+        .form-control, .form-select {
+            background-color: #091113;
+            color: #f1f5f9;
+            border: 1px solid var(--border-neon);
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #0c171a;
+            color: #fff;
+            border-color: var(--tiffany-main);
+            box-shadow: 0 0 10px rgba(10, 186, 181, 0.4);
+        }
+
+        .form-label {
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(4, 8, 10, 0.85);
+            z-index: 9999;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 15px;
+        }
+
+        .custom-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .custom-modal-content {
+            background-color: #0d1518;
+            border: 1.5px solid var(--tiffany-main);
+            border-radius: 20px;
+            padding: 25px;
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(10, 186, 181, 0.35);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .custom-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #94a3b8;
+            font-size: 26px;
+            cursor: pointer;
+            }
+        /* 1. Скрываем дефолтный браузерный квадратик */
+.service-checkbox-label input[type="checkbox"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+
+    /* Размеры кастомного квадратика */
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+
+    /* Прозрачный фон и тонкая рамка */
+    background-color: transparent !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 4px;
+
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+/* 2. Подсветка рамки при наведении */
+.service-checkbox-label input[type="checkbox"]:hover {
+    border-color: #00b4d8 !important; /* Твой цвет Tiffany */
+}
+
+/* 3. Когда выбран: заливка Tiffany */
+.service-checkbox-label input[type="checkbox"]:checked {
+    background-color: #00b4d8 !important; /* Твой цвет Tiffany */
+    border-color: #00b4d8 !important;
+}
+
+/* 4. Белая галочка внутри при выборе */
+.service-checkbox-label input[type="checkbox"]:checked::after {
+    content: '' !important;
+    width: 5px;
+    height: 10px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+}
+/* ==========================================
+   ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (SMARTPHONES)
+   ========================================== */
+@media (max-width: 576px) {
+    /* 1. Уменьшаем размер заголовка на маленьких экранах */
+    .hero-title {
+        font-size: 1.85rem !important;
+        line-height: 1.2;
+    }
+
+    /* 2. Оптимизируем отступы в Hero секции */
+    .hero-section {
+        padding: 120px 0 60px 0 !important;
+    }
+
+    /* 3. Делаем карточки услуг удобными для свайпа пальцем (чуть шире для мелких экранов) */
+    .service-card-item {
+        flex: 0 0 88vw !important;
+        max-width: 310px !important;
+    }
+
+    /* 4. Увеличиваем кликабельную область строк с ценами */
+    .service-checkbox-label {
+        padding: 6px 0;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 5. Увеличиваем сам чекбокс до 22px для удобства нажатия */
+    .service-checkbox-label input[type="checkbox"] {
+        width: 22px !important;
+        height: 22px !important;
+        min-width: 22px !important;
+    }
+
+    /* 6. Фикс модального окна на айфонах */
+    .custom-modal-content {
+        padding: 20px 15px !important;
+        border-radius: 16px !important;
+    }
+}
+
+/* Плашка бронирования снизу (с учетом безопасной зоны айфонов) */
+.floating-booking-bar {
+    position: fixed;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #111;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px calc(12px + env(safe-area-inset-bottom)) 15px;
+    transition: bottom 0.3s ease-in-out;
+}
+
+.floating-booking-bar.show {
+    bottom: 0;
+}
+
+/* Адаптивное модальное окно (общие стили) */
+.custom-modal-content {
+    width: 92% !important;
+    max-width: 500px !important;
+    margin: 20px auto !important;
+    padding: 20px !important;
+}
+
+.service-checkbox-label {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Увеличенный отступ футера, чтобы плашка ничего не закрывала */
+.style-footer {
+    z-index: 10;
+    margin-bottom: 100px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+    </style>
+    <style>
+    /* Изначально плашка скрыта везде */
+    .floating-booking-bar {
+        position: fixed;
+        bottom: -100px; /* Спрятана за нижний край */
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: #111;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 12px 0;
+        transition: bottom 0.3s ease-in-out; /* Плавное выезжание */
+    }
+
+    /* Показываем плашку только когда выбран хотя бы 1 чекбокс (класс .show) */
+    .floating-booking-bar.show {
+        bottom: 0;
+    }
+
+    /* Адаптивное модальное окно */
+    .custom-modal-content {
+        width: 92% !important;
+        max-width: 500px !important;
+        margin: 20px auto !important;
+        padding: 20px !important;
+    }
+
+    .service-checkbox-label {
+        cursor: pointer;
+        user-select: none;
+    }
+    .style-footer {
+    z-index: 10;
+    margin-bottom: 80px; /* Запас места, чтобы фиксированная плашка бронирования не закрывала текст */
+}
+    html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+</style>
+</head>
+<body>
+
+
+    <!-- ==========================================
+       1. НАВИГАЦИОННАЯ ПАНЕЛЬ (NAVBAR)
+       ========================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar shadow-sm">
+        <div class="container">
+           <a class="navbar-brand d-flex align-items-center" href="#">
+    <i class="fa-solid fa-car-side text-tiffany me-2"></i>NEROX <span>STUDIO</span>
+</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto text-center text-lg-end pt-2 pt-lg-0 gap-lg-3">
+                    <a class="nav-link" href="#about">O nas</a>
+                    <a class="nav-link" href="#services">Usługi i Cennik</a>
+                    <a class="nav-link" href="#gallery">Galeria</a>
+                    <a class="btn btn-tiffany px-4 py-2 text-uppercase fw-bold" style="font-family: Verdana, Geneva, sans-serif;" href="#contact">Kontakt</a>
+                </div>
+                <div class="ms-lg-3 mt-3 mt-lg-0 text-center">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+       2. ГЛАВНЫЙ ЭКРАН (HERO SECTION)
+       ========================================== -->
+    <header class="hero-section text-center">
+        <div class="container mt-2">
+            <span class="badge bg-dark border border-tiffany text-tiffany px-3 py-2 rounded-pill mb-3 text-uppercase font-mono" style="font-size: 0.75rem;">
+                <i class="fa-solid fa-bolt me-1"></i> Premium Detailing Poznań
+            </span>
+            <h1 class="hero-title text-white mb-3">Zabezpiecz Swój <span class="text-tiffany text-glow-tiffany">Samochód</span></h1>
+            <p class="lead mx-auto mb-4" style="max-width: 680px; color: #94a3b8; font-size: 1rem;">
+                Profesjonalne usługi auto detailingu, powłoki ceramiczne oraz folie ochronne PPF. Nadaj swojemu pojazdowi nieskazitelny salonowy blask.
+            </p>
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 px-3">
+
+                <a href="#services" class="btn btn-tiffany btn-lg px-4 py-3">Zobacz cennik</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+       3. БЛОК ПРЕИМУЩЕСТВ (O NAS)
+       ========================================== -->
+    <section id="about" class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="text-uppercase fw-bold text-white mb-2">Dlaczego <span class="text-tiffany">NEROX STUDIO</span>?</h2>
+            <p style="color: #64748b; font-size: 0.95rem;">Bezkompromisowa jakość i pasja do motoryzacji</p>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="rounded-circle bg-dark border border-tiffany d-inline-flex align-items-center justify-content-center text-tiffany mb-3" style="width: 55px; height: 55px;">
+                        <i class="fa-solid fa-award fa-xl"></i>
+                    </div>
+                    <h4 class="text-white h5 fw-bold mb-2">Doświadczenie</h4>
+                    <p class="mb-0" style="color: #94a3b8; font-size: 0.9rem;">Ponad 5 lat doświadczenia naszego zespołu z samochodami super-sport, premium i foliami ochronnymi.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="rounded-circle bg-dark border border-tiffany d-inline-flex align-items-center justify-content-center text-tiffany mb-3" style="width: 55px; height: 55px;">
+                        <i class="fa-solid fa-flask fa-xl"></i>
+                    </div>
+                    <h4 class="text-white h5 fw-bold mb-2">Certyfikowana Chemia</h4>
+                    <p class="mb-0" style="color: #94a3b8; font-size: 0.9rem;">Używamy wyłącznie sprawdzonych powłok ceramicznych i elastomerowych z Japonii, Niemiec i USA.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="rounded-circle bg-dark border border-tiffany d-inline-flex align-items-center justify-content-center text-tiffany mb-3" style="width: 55px; height: 55px;">
+                        <i class="fa-solid fa-shield-halved fa-xl"></i>
+                    </div>
+                    <h4 class="text-white h5 fw-bold mb-2">Gwarancja Jakości</h4>
+                    <p class="mb-0" style="color: #94a3b8; font-size: 0.9rem;">Dajemy pisemną gwarancję na nałożone powłoki ceramiczne, kwarcowe oraz ochronę lakieru.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       4. УСЛУГИ И ЦЕННИК С НЕЗАВИСИМЫМ ВЫБОРОМ
+       ========================================== -->
+    <section id="services" class="container py-5">
+        <div class="text-center mb-4">
+            <h2 class="text-uppercase fw-bold text-white">Nasze Usługi i <span class="text-tiffany">Cennik</span></h2>
+            <p style="color: #64748b; font-size: 0.9rem;">Zaznacz interesujące Cię opcje w dowolnych kartach poniżej</p>
+        </div>
+
+        <div class="services-carousel-container px-lg-4">
+            <button class="carousel-arrow-btn carousel-prev" onclick="scrollCarousel(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-arrow-btn carousel-next" onclick="scrollCarousel(1)"><i class="fa-solid fa-chevron-right"></i></button>
+
+            <div class="services-scroll-wrapper" id="servicesCarousel">
+
+                <!-- Карточка 1 -->
+<div class="service-card-item service-box">
+    <img src="https://nexus-car.jp/img/upload/blog/main_586_20250522_161439_929.jpeg" class="service-card-img" alt="Mycie">
+    <div class="p-3 p-md-4 d-flex flex-column flex-grow-1">
+        <h4 class="text-tiffany h6 fw-bold mb-3">Mycie i Dekontaminacja</h4>
+        <ul class="subservice-list-card flex-grow-1 list-unstyled m-0 p-0">
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2"><strong class="text-white fw-normal">Głębokie czyszczenie</strong> <small class="d-block text-secondary">smoła, asfalt</small></span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">150 PLN</span>
+                        <input type="checkbox" value="Głębokie czyszczenie" data-price="150" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Карточка 2 -->
+<div class="service-card-item service-box">
+    <img src="https://lazarusprodetail.com/wp-content/uploads/2025/11/Gloved-hands-using-DA-polisher-applying-advanced-detailing-techniques-on-glossy-paint.png" class="service-card-img" alt="Polerowanie">
+    <div class="p-3 p-md-4 d-flex flex-column flex-grow-1">
+        <h4 class="text-tiffany h6 fw-bold mb-3">Korekta i Polerowanie</h4>
+        <ul class="subservice-list-card flex-grow-1 list-unstyled m-0 p-0">
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2"><strong class="text-white fw-normal">One Step</strong> <small class="d-block text-secondary">Sedan / SUV</small></span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">600 PLN</span>
+                        <input type="checkbox" value="One Step" data-price="600" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Korekta dwuetapowa</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">950 PLN</span>
+                        <input type="checkbox" value="Korekta dwuetapowa" data-price="950" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Renowacja reflektorów + PPF</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">500 PLN</span>
+                        <input type="checkbox" value="Renowacja reflektorów" data-price="500" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Aplikacja wosku twardego</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">200 PLN</span>
+                        <input type="checkbox" value="Aplikacja wosku" data-price="200" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Карточка 3 -->
+<div class="service-card-item service-box">
+    <img src="https://autoflowcarwash.ca/wp-content/uploads/2025/07/paint-protection-film-Vancouver.jpg" class="service-card-img" alt="PPF">
+    <div class="p-3 p-md-4 d-flex flex-column flex-grow-1">
+        <h4 class="text-tiffany h6 fw-bold mb-3">Folie Ochronne PPF i Stylizacja</h4>
+        <ul class="subservice-list-card flex-grow-1 list-unstyled m-0 p-0">
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Zmiana koloru dachu</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">900 PLN</span>
+                        <input type="checkbox" value="Zmiana koloru dachu" data-price="900" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Oklejanie aut firmowych</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">500 PLN</span>
+                        <input type="checkbox" value="Oklejanie aut firmowych" data-price="500" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Oklejanie wnęk klamek</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">200 PLN</span>
+                        <input type="checkbox" value="Oklejanie wnęk klamek" data-price="200" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Zmiana koloru dekorów</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">700 PLN</span>
+                        <input type="checkbox" value="Zmiana koloru dekorów" data-price="700" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Карточка 4 -->
+<div class="service-card-item service-box">
+    <img src="https://www.elitedetailingde.com/wp-content/uploads/2023/11/ELITE-DETAILING-services-interior-cleaning-04.jpg" class="service-card-img" alt="Wnętrze">
+    <div class="p-3 p-md-4 d-flex flex-column flex-grow-1">
+        <h4 class="text-tiffany h6 fw-bold mb-3">Detailing Wnętrza</h4>
+        <ul class="subservice-list-card flex-grow-1 list-unstyled m-0 p-0">
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Kompleksowe pranie wnętrza</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">400 PLN</span>
+                        <input type="checkbox" value="Pranie wnętrza" data-price="400" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Pranie samych foteli</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">300 PLN</span>
+                        <input type="checkbox" value="Pranie foteli" data-price="300" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Zabezpieczenie ekranów PPF</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">350 PLN</span>
+                        <input type="checkbox" value="PPF ekranów" data-price="350" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2 text-white">Polerowanie Piano Black + PPF</span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">250 PLN</span>
+                        <input type="checkbox" value="Piano Black PPF" data-price="250" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Карточка 5 -->
+<div class="service-card-item service-box">
+    <img src="https://media.gettyimages.com/id/1800033825/photo/hand-cleaning-the-car-interior-with-microfiber-cloth-towel.jpg?b=1&s=2048x2048&w=0&k=20&c=PTOsSZYyhvBnUW5yM5PYN9Pj_GfWJbwv5xTwgRf7hn4=" class="service-card-img" alt="Pakiety">
+    <div class="p-3 p-md-4 d-flex flex-column flex-grow-1">
+        <h4 class="text-tiffany h6 fw-bold mb-3">Pakiety Bazowe</h4>
+        <ul class="subservice-list-card flex-grow-1 list-unstyled m-0 p-0">
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2"><strong class="text-white">Pakiet BASIC</strong> <small class="d-block text-secondary">Mycie, wosk</small></span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">300 PLN</span>
+                        <input type="checkbox" value="Pakiet BASIC" data-price="300" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2"><strong class="text-white">Pakiet DEEP CLEAN</strong> <small class="d-block text-secondary">Dekontaminacja</small></span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">500 PLN</span>
+                        <input type="checkbox" value="Pakiet DEEP CLEAN" data-price="500" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2"><strong class="text-white">Pakiet POLISH</strong> <small class="d-block text-secondary">One-Step</small></span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">1000 PLN</span>
+                        <input type="checkbox" value="Pakiet POLISH" data-price="1000" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Карточка 6 -->
+<div class="service-card-item service-box">
+    <img src="https://royaltechautos.com/wp-content/uploads/2022/03/ceramic-coating-1.jpg" class="service-card-img" alt="Ceramika">
+    <div class="p-3 p-md-4 d-flex flex-column flex-grow-1">
+        <h4 class="text-tiffany h6 fw-bold mb-3">Pakiety Premium & Ceramika</h4>
+        <ul class="subservice-list-card flex-grow-1 list-unstyled m-0 p-0">
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2"><strong class="text-white">Pakiet CERAMIC</strong> <small class="d-block text-secondary">Korekta + ceramika</small></span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">1500 PLN</span>
+                        <input type="checkbox" value="Pakiet CERAMIC" data-price="1500" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+            <li class="mb-2">
+                <label class="service-checkbox-label d-flex justify-content-between align-items-center w-100 cursor-pointer">
+                    <span class="me-2"><strong class="text-white">Pakiet FULL DETAILING</strong> <small class="d-block text-secondary">Pełny pakiet</small></span>
+                    <span class="d-flex align-items-center gap-2 flex-shrink-0">
+                        <span class="price-badge-sm">2500 PLN</span>
+                        <input type="checkbox" value="Pakiet FULL DETAILING" data-price="2500" onchange="updateGlobalSelection()">
+                    </span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+    </section>
+
+    <!-- ==========================================
+       5. ПЛАВАЮЩАЯ ПЛАШКА СУММЫ И БРОНИРОВАНИЯ (ПОЯВЛЯЕТСЯ СНИЗУ)
+       ========================================== -->
+    <div class="floating-booking-bar" id="floatingBar">
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
+            <div class="text-center text-sm-start">
+                <span class="text-muted small d-block">Wybrane usługi: <span id="selectedCount" class="text-white fw-bold">0</span></span>
+                <span class="text-white h5 mb-0">Łączna kwota: <span id="globalTotalSum" class="text-tiffany font-mono fw-bold">0 PLN</span></span>
+            </div>
+            <button onclick="openBookingWithSelected()" class="btn btn-tiffany px-4 py-2 text-uppercase fw-bold">
+                Zarezerwuj wybrane <i class="fa-solid fa-calendar-check ms-1"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+       6. ГАЛЕРЕЯ (GALERIA)
+       ========================================== -->
+    <section id="gallery" class="container py-5">
+        <div class="text-center mb-4">
+            <h2 class="text-uppercase fw-bold text-white">Galeria <span class="text-tiffany">Realizacji</span></h2>
+            <p style="color: #64748b; font-size: 0.9rem;">Zobacz efekty naszej pracy nad projektami klientów</p>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800" class="gallery-img" alt="Porsche">
+                    <div class="gallery-text">Porsche 911 - Ceramic</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800" class="gallery-img" alt="Corvette">
+                    <div class="gallery-text">Korekta Lakieru & Gloss</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?q=80&w=800" class="gallery-img" alt="Audi">
+                    <div class="gallery-text">Audi RS - PPF Protection</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+   7. КОНТАКТЫ И СОЦСЕТИ (KONTAKT)
+   ========================================== -->
+<section id="contact" class="container py-4 py-md-5">
+    <div class="row g-4 align-items-stretch">
+        <!-- Левая колонка: контакты и соцсети -->
+        <div class="col-lg-6">
+            <div class="feature-card h-100 d-flex flex-column justify-content-between p-3 p-md-4">
+                <div>
+                    <h3 class="text-white h5 fw-bold mb-2">
+                        <i class="fa-solid fa-location-dot text-tiffany me-2"></i>Nasz adres
+                    </h3>
+                    <p class="mb-4" style="color: #94a3b8; font-size: 0.9rem">
+                        Mikołaja Reja 13, 62-020 Swarzędz<br>Polska
+                    </p>
+
+                    <h3 class="text-white h5 fw-bold mb-2">
+                        <i class="fa-solid fa-phone text-tiffany me-2"></i>Kontakt
+                    </h3>
+                    <p class="mb-0" style="color: #94a3b8; font-size: 0.9rem">
+                        Tel: +48 518 631 004<br>Email: nerox@studio.pl
+                    </p>
+                    <h3 class="text-white h5 fw-bold mb-2 mt-4">
+                         <i class="fa-solid fa-clock text-tiffany me-2"></i>Godziny otwarcia
+                    </h3>
+                    <p class="mb-0" style="color: #94a3b8; font-size: 0.9rem">
+                         Poniedziałek - Piątek: 9:00 - 17:00<br>Sobota - Niedziela: Zamknięte
+                    </p>
+                </div>
+
+                <!-- Исправленный блок соцсетей -->
+                <div id="socials" class="row g-2 pt-3 border-top border-secondary border-opacity-25 mt-4">
+                    <div class="col-4">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-card text-center d-flex flex-column align-items-center justify-content-center h-100 text-decoration-none p-2 rounded" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                            <i class="fa-brands fa-instagram text-tiffany mb-1" style="font-size: 1.4rem;"></i>
+                            <span class="text-white fw-bold" style="font-size: 0.75rem;">Instagram</span>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-card text-center d-flex flex-column align-items-center justify-content-center h-100 text-decoration-none p-2 rounded" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                            <i class="fa-brands fa-tiktok text-tiffany mb-1" style="font-size: 1.4rem;"></i>
+                            <span class="text-white fw-bold" style="font-size: 0.75rem;">TikTok</span>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-card text-center d-flex flex-column align-items-center justify-content-center h-100 text-decoration-none p-2 rounded" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                            <i class="fa-brands fa-facebook text-tiffany mb-1" style="font-size: 1.4rem;"></i>
+                            <span class="text-white fw-bold" style="font-size: 0.75rem;">Facebook</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая колонка: карта -->
+        <div class="col-lg-6">
+            <div class="map-container h-100 rounded overflow-hidden">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2434.207361071702!2d17.062954176389702!3d52.40291797203067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470459490772ee91%3A0x376fbfc59734b0fa!2sMiko%C5%82aja%20Reja%2013%2C%2062-020%20Swarz%C4%9dz!5e0!3m2!1sru!2spl!4v1789923009193!5m2!1sru!2spl"
+                    style="border:0; width: 100%; height: 100%; min-height: 280px;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Footer -->
+<footer class="bg-black text-center py-4 border-top border-secondary border-opacity-25 position-relative style-footer">
+    <div class="container text-secondary small">
+        &copy; 2026 NEROX STUDIO. Wszelkie prawa zastrzeżone. Premium Car Detailing.
+    </div>
+</footer>
+
+    <!-- ==========================================
+       8. МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ
+       ========================================== -->
+    <div class="custom-modal" id="bookingModal">
+        <div class="custom-modal-content">
+            <span class="custom-close-btn" onclick="closeBooking()">&times;</span>
+            <h3 class="text-white h5 fw-bold mb-3 text-uppercase"><i class="fa-solid fa-calendar-check text-tiffany me-2"></i>Rezerwacja terminu</h3>
+
+            <form onsubmit="submitBooking(event)">
+                <div class="mb-3">
+                    <label class="form-label">Imię i nazwisko</label>
+                    <input type="text" class="form-control" required placeholder="Jan Kowalski">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Numer telefonu</label>
+                    <input type="tel" class="form-control" required placeholder="+48 000 000 000">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Marka i Model Auta</label>
+                    <input type="text" name="car" class="form-control" placeholder="np. BMW M4" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Wybrane usługi i kwota</label>
+                    <textarea class="form-control font-mono" id="modalServiceInput" rows="3" readonly style="font-size: 0.85rem;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-tiffany w-100 py-3 text-uppercase fw-bold">Potwierdź rezerwację</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript скрипты -->
+    <script>
+    // 1. Прокрутка карусели услуг
+    function scrollCarousel(direction) {
+        const container = document.getElementById('servicesCarousel');
+        const scrollAmount = 360;
+        container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+
+    // 2. Глобальный подсчет сумм и управление плавающей плашкой
+    function updateGlobalSelection() {
+        const checkboxes = document.querySelectorAll('.service-box input[type="checkbox"]');
+        let totalSum = 0;
+        let checkedCount = 0;
+
+        checkboxes.forEach(cb => {
+            if(cb.checked) {
+                totalSum += parseInt(cb.getAttribute('data-price')) || 0;
+                checkedCount++;
+            }
+        });
+
+        document.getElementById('globalTotalSum').innerText = totalSum + ' PLN';
+        document.getElementById('selectedCount').innerText = checkedCount;
+
+        const floatingBar = document.getElementById('floatingBar');
+        if(checkedCount > 0) {
+            floatingBar.classList.add('show');
+        } else {
+            floatingBar.classList.remove('show');
+        }
+    }
+
+    // 3. Открытие модального окна с выбранными услугами
+    function openBookingWithSelected() {
+        const checkboxes = document.querySelectorAll('.service-box input[type="checkbox"]');
+        let selectedItems = [];
+        let totalSum = 0;
+
+        checkboxes.forEach(cb => {
+            if(cb.checked) {
+                selectedItems.push(cb.value);
+                totalSum += parseInt(cb.getAttribute('data-price')) || 0;
+            }
+        });
+
+        if (selectedItems.length === 0) {
+            alert('Proszę zaznaczyć przynajmniej jedną usługę!');
+            return;
+        }
+
+        const summaryText = `Wybrane usługi (${selectedItems.length}):\n• ${selectedItems.join('\n• ')}\n\nŁączna suma: ${totalSum} PLN`;
+
+        document.getElementById('modalServiceInput').value = summaryText;
+        document.getElementById('bookingModal').classList.add('show');
+    }
+
+    // 4. Закрытие модального окна
+    function closeBooking() {
+        document.getElementById('bookingModal').classList.remove('show');
+    }
+
+    // 5. Отправка формы во Flask с переходом на страницу благодарности
+    async function submitBooking(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const name = form.querySelector('input[type="text"]').value;
+        const phone = form.querySelector('input[type="tel"]').value;
+        const car = form.querySelector('input[name="car"]').value;
+        const service = document.getElementById('modalServiceInput').value;
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('phone', phone);
+        formData.append('car', car);
+        formData.append('service', service);
+
+        try {
+            let response = await fetch('/join', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                // Перенаправление на страницу благодарности
+                window.location.href = '/thanks';
+            } else {
+                alert('Wystąpił błąd. Spróbuj ponownie później.');
+            }
+        } catch (error) {
+            console.error('Błąd:', error);
+            alert('Błąd połączenia z serwerem.');
+        }
+    }
+
+    // 6. Закрытие модального окна по клику вне его области
+    window.onclick = function(event) {
+        const modal = document.getElementById('bookingModal');
+        if (event.target === modal) {
+            closeBooking();
+        }
+    }
+</script>
+</body>
+</html>
