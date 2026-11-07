@@ -696,7 +696,8 @@ section {
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar shadow-sm">
 <div class="container">
 <a class="navbar-brand d-flex align-items-center" href="#">
-<img src="/static/images/nerox-removebg-preview.png" alt="NEROX" style="height: 38px; width: auto;" class="d-inline-block me-2">NEROX<span>STUDIO</span>
+    <img src="{{ url_for('static', filename='images/nerox-removebg-preview.png') }}" alt="NEROX" style="height: 38px; width: auto;" class="d-inline-block me-2">
+    NEROX<span class="text-tiffany">STUDIO</span>
 </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
