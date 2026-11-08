@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 import requests
 
 app = Flask(__name__)
@@ -41,7 +41,7 @@ def join():
 
     print(f"DEBUG: Заявка получена от {name}, авто: {car}")
 
-    # Пытаемся отправить в Telegram (если токен пустой, просто выведем ошибку в консоль, но сайт не упадет)
+    # Пытаемся отправить в Telegram
     try:
         telegram_text = (
             f"🔥 <b>Nowa zgłoszenie!</b>\n"
@@ -57,14 +57,17 @@ def join():
 
     # Возвращаем шаблон благодарности
     return render_template('thanks.html')
+
+
 @app.route('/thanks')
 def thanks():
     return render_template('thanks.html')
-    from flask import send_from_directory
+
 
 @app.route('/yandex_ee4667789e6f6ced.html')
 def yandex_verification():
-    return send_from_directory('static/images', 'yandex_ee4667789e6f6ced.html')
+    directory = os.path.join(app.root_path, 'static', 'images')
+    return send_from_directory(directory, 'yandex_ee4667789e6f6ced.html')
 
 
 if __name__ == '__main__':
