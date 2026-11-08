@@ -60,6 +60,11 @@ def join():
 @app.route('/thanks')
 def thanks():
     return render_template('thanks.html')
+    from flask import send_from_directory
+
+@app.route('/yandex_ee4667789e6f6ced.html')
+def yandex_verification():
+    return send_from_directory('static/images', 'yandex_ee4667789e6f6ced.html')
 
 
 if __name__ == '__main__':
