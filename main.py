@@ -68,7 +68,7 @@ def thanks():
 def yandex_verification():
     directory = os.path.join(app.root_path, 'static', 'images')
     return send_from_directory(directory, 'yandex_ee4667789e6f6ced.html')
-    @app.route('google91eb21eb206a80e6.html')
+    @app.route('/google91eb21eb206a80e6.html')
 def google_verification():
     directory = os.path.join(app.root_path, 'static', 'images')
     return send_from_directory(directory, 'google91eb21eb206a80e6.html')
